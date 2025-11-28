@@ -1,0 +1,13 @@
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+words = ["AI", "Transforms", "The", "World"]
+Q = K = np.random.randn(4, 8) 
+
+scores = np.matmul(Q, K.T) / np.sqrt(8)
+weights = np.exp(scores) / np.sum(np.exp(scores), axis=1, keepdims=True)
+
+sns.heatmap(weights, xticklabels=words, yticklabels=words, annot=True, cmap="Blues")
+plt.title("Self-Attention: How words relate to each other")
+plt.show()
