@@ -1,0 +1,7 @@
+import random, math, collections as c
+
+d = "the cat sat on the mat the cat sat on the hat".split()
+m = c.defaultdict(list); [m[tuple(d[i:i+2])].append(d[i+2]) for i in range(len(d)-2)]
+o = d[:2]; [o.append(random.choice(m[tuple(o[-2:])])) for _ in range(5)]
+p = [m[tuple(o[i:i+2])].count(o[i+2])/len(m[tuple(o[i:i+2])]) for i in range(len(o)-2)]
+print(f"Gen: {o}\nPP: {2**(-sum(math.log2(x) for x in p)/len(p)):.2f}")
