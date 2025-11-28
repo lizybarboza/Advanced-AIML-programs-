@@ -1,0 +1,27 @@
+# Simple Reflex Agent in a Grid
+grid = [
+    ['.', 'T', '.', '#'],
+    ['.', '#', '.', '.'],
+    ['.', '.', 'T', '.'],
+    ['A', '.', '.', '.']
+]
+
+R, C = len(grid), len(grid[0])
+
+# Directions: up, right, down, left
+dirs = [(-1,0),(0,1),(1,0),(0,-1)]
+orientation = 1  # start facing right
+
+def find_agent():
+    for r in range(R):
+        for c in range(C):
+            if grid[r][c]=='A':
+                return r,c
+
+def move(r,c,dr,dc):
+    nr, nc = r+dr, c+dc
+    if 0<=nr<R and 0<=nc<C and grid[nr][nc]!='#':
+        grid[r][c] = '.'
+        grid[nr][nc] = 'A'
+        return nr,nc
+    return r,c
